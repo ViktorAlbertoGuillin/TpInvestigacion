@@ -1,79 +1,64 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using TpInvestigacion.Data.Entidades;
 using TpInvestigacion.Data.Interfaces;
 
+
 namespace TpInvestigacion.Data
 {
     public class Repositorio : IRepositorio
     {
-        public void GuardarBloque(string dato)
+        private TpInvestigacionContext _contexto;
+        public Repositorio(TpInvestigacionContext contexto)
         {
-            int? idUltimo = ObtenerUltimoId();
-            idUltimo++;
-            Bloque bloque = new Bloque();
-            bloque.Id = (int)idUltimo;
-            bloque.Datos = dato;
-            bloque.Tiempo = DateTime.Now;
-            bloque.Hash_anterior = TrazabilidadSeudoDatabase.GetCadena().Count() == 0 ? "0" : TrazabilidadSeudoDatabase.GetCadena().Last().Hash;
-            bloque.Hash = CalcularHash(bloque.Id + bloque.Datos + bloque.Tiempo + bloque.Hash_anterior);
-            TrazabilidadSeudoDatabase.GetCadena().Add(bloque);
+            _contexto = contexto;
         }
 
-        private int ObtenerUltimoId()
+        public void GuardarBloque(Bloque bloque)
         {
-            try
-            {
-                if (TrazabilidadSeudoDatabase.GetCadena().Count() == 0)
-                {
-                    return 0;
-                }
-                else
-                {
-                    return TrazabilidadSeudoDatabase.GetCadena().LastOrDefault().Id;
-                }
-            }
-            catch (Exception ex)
-            {
-                return 0;
-            }
-        }
-
-        private string CalcularHash(string dato)
-        {
-            SHA256 sha256 = SHA256.Create();
-            byte[] inputBytes = Encoding.ASCII.GetBytes($"{dato}");
-            byte[] outputBytes = sha256.ComputeHash(inputBytes);
-            return Convert.ToBase64String(outputBytes);
+            _contexto.Bloques.Add(bloque);
+            _contexto.SaveChanges();
         }
 
         public List<Bloque> GetCadena()
         {
-            return TrazabilidadSeudoDatabase.GetCadena();
+            return _contexto.Bloques.ToList();
+        }
+
+        public Bloque UltimoBloque()
+        {
+            return _contexto.Bloques.Last();
+        }
+
+        public int ContadorBloques()
+        {
+            return _contexto.Bloques.Count();
         }
 
         public Bloque BuscarBloquePorId(int id)
         {
-            return TrazabilidadSeudoDatabase.GetCadena().SingleOrDefault(e => e.Id == id);
+            return _contexto.Bloques.Find(id);
         }
 
         public void ModificarBloque(Bloque bloqueEditado)
         {
-            Bloque bloque = TrazabilidadSeudoDatabase.GetCadena().Find(f => f.Id == bloqueEditado.Id);
-            bloque.Id = bloqueEditado.Id;
+            Bloque bloque = _contexto.Bloques.Find(bloqueEditado.Id);
             bloque.Datos = bloqueEditado.Datos;
             bloque.Hash = bloqueEditado.Hash;
-            bloque.Hash_anterior = bloqueEditado.Hash_anterior;
+            bloque.HashAnterior = bloqueEditado.HashAnterior;
             bloque.Tiempo = bloqueEditado.Tiempo;
+            _contexto.SaveChanges();
         }
 
         public void EliminarBloque(int Id)
         {
-            Bloque bloque = BuscarBloquePorId(Id);
-            TrazabilidadSeudoDatabase.GetCadena().Remove(bloque);
+            Bloque bloque = _contexto.Bloques.Find(Id);
+            _contexto.Bloques.Remove(bloque);
+            _contexto.SaveChanges();
         }
     }
 }
