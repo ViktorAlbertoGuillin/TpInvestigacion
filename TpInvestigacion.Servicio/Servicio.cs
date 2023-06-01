@@ -10,7 +10,7 @@ using TpInvestigacion.Servicio.Interfaces;
 
 namespace TpInvestigacion.Servicio
 {
-    public class Servicio : IServicio 
+    public class Servicio : IServicio
     {
         readonly IRepositorio _repositorio;
 
@@ -19,16 +19,6 @@ namespace TpInvestigacion.Servicio
             _repositorio = repositorio;
         }
 
-        public void AgregarBloque(string dato)
-        {
-            Bloque bloque = new Bloque();
-            bloque.Datos = dato;
-            bloque.Tiempo = DateTime.Now;
-            var ultimoBloque = _repositorio.UltimoBloque();
-            bloque.HashAnterior = _repositorio.ContadorBloques() == 0 ? "0" : ultimoBloque.Hash;
-            bloque.Hash = CalcularHash(bloque.Id + bloque.Datos + bloque.Tiempo + bloque.HashAnterior);
-            _repositorio.GuardarBloque(bloque);
-        }
         private string CalcularHash(string dato)
         {
             SHA256 sha256 = SHA256.Create();
@@ -37,9 +27,38 @@ namespace TpInvestigacion.Servicio
             return Convert.ToBase64String(outputBytes);
         }
 
+        public void AgregarBloque(string dato)
+        {
+            Bloque bloque = new Bloque();
+            bloque.Datos = dato;
+            bloque.Tiempo = DateTime.Now;
+
+            if (_repositorio.ContadorBloques() == 0)
+            {
+                bloque.HashAnterior = "0";
+            }
+            else
+            {
+                var ultimoBloque = _repositorio.UltimoBloque();
+                bloque.HashAnterior = ultimoBloque.Hash;
+            }
+            bloque.Hash = CalcularHash(bloque.Id + bloque.Datos + bloque.Tiempo + bloque.HashAnterior);
+            _repositorio.GuardarBloque(bloque);
+        }
+
+
+
+
         public List<Bloque> ListarBloques()
         {
-            return _repositorio.GetCadena();
+            try
+            {
+                return _repositorio.GetCadena();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         public Bloque BuscarBloquePorId(int Id)
@@ -83,5 +102,6 @@ namespace TpInvestigacion.Servicio
         }
     }
 }
+
     
 

@@ -15,5 +15,6 @@ namespace TpInvestigacion.Servicio.Interfaces
         void ModificarBloque(Bloque bloqueEditado);
         void EliminarBloque(int Id);
         string VerificarIntegridad();
+        
     }
 }
