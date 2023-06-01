@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using TpInvestigacion.Data.Entidades;
@@ -20,7 +21,20 @@ namespace TpInvestigacion.Servicio
 
         public void AgregarBloque(string dato)
         {
+            Bloque bloque = new Bloque();
+            bloque.Datos = dato;
+            bloque.Tiempo = DateTime.Now;
+            var ultimoBloque = _repositorio.UltimoBloque();
+            bloque.HashAnterior = _repositorio.ContadorBloques() == 0 ? "0" : ultimoBloque.Hash;
+            bloque.Hash = CalcularHash(bloque.Id + bloque.Datos + bloque.Tiempo + bloque.HashAnterior);
             _repositorio.GuardarBloque(dato);
+        }
+        private string CalcularHash(string dato)
+        {
+            SHA256 sha256 = SHA256.Create();
+            byte[] inputBytes = Encoding.ASCII.GetBytes($"{dato}");
+            byte[] outputBytes = sha256.ComputeHash(inputBytes);
+            return Convert.ToBase64String(outputBytes);
         }
 
         public List<Bloque> ListarBloques()
