@@ -26,12 +26,30 @@ namespace TpInvestigacion.Data
 
         public List<Bloque> GetCadena()
         {
-            return _contexto.Bloques.ToList();
+            List<Bloque> lista = _contexto.Bloques.ToList();
+            if (lista != null)
+            {
+                return lista;
+            }
+            else
+            {
+                throw new ArgumentException("Lista vacia");
+            }
+            
         }
 
         public Bloque UltimoBloque()
         {
-            return _contexto.Bloques.Last();
+            Bloque bloque = _contexto.Bloques.Last();
+            if( bloque != null)
+            {
+                return bloque;
+            }
+            else
+            {
+                throw new ArgumentException("El argumento no es válido");
+            }
+            
         }
 
         public int ContadorBloques()
