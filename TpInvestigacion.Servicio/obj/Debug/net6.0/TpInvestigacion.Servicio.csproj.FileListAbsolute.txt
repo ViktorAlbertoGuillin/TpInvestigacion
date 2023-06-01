@@ -10,3 +10,8 @@ C:\ProyectosCSharp\TpInvestigacion\TpInvestigacion.Servicio\obj\Debug\net6.0\TpI
 C:\ProyectosCSharp\TpInvestigacion\TpInvestigacion.Servicio\obj\Debug\net6.0\refint\TpInvestigacion.Servicio.dll
 C:\ProyectosCSharp\TpInvestigacion\TpInvestigacion.Servicio\obj\Debug\net6.0\TpInvestigacion.Servicio.pdb
 C:\ProyectosCSharp\TpInvestigacion\TpInvestigacion.Servicio\obj\Debug\net6.0\ref\TpInvestigacion.Servicio.dll
+C:\ProyectosCSharp\TpInvestigacion\TpInvestigacion.Servicio\bin\Debug\net6.0\TpInvestigacion.Servicio.runtimeconfig.json
+C:\ProyectosCSharp\TpInvestigacion\TpInvestigacion.Servicio\bin\Debug\net6.0\TpInvestigacion.Data.dll
+C:\ProyectosCSharp\TpInvestigacion\TpInvestigacion.Servicio\bin\Debug\net6.0\TpInvestigacion.Data.pdb
+C:\ProyectosCSharp\TpInvestigacion\TpInvestigacion.Servicio\obj\Debug\net6.0\TpInvestigacion.Servicio.csproj.CopyComplete
+C:\ProyectosCSharp\TpInvestigacion\TpInvestigacion.Servicio\obj\Debug\net6.0\TpInvestigacion.Servicio.genruntimeconfig.cache

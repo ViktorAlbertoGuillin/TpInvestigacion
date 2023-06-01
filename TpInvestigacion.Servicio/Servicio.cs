@@ -27,7 +27,7 @@ namespace TpInvestigacion.Servicio
             var ultimoBloque = _repositorio.UltimoBloque();
             bloque.HashAnterior = _repositorio.ContadorBloques() == 0 ? "0" : ultimoBloque.Hash;
             bloque.Hash = CalcularHash(bloque.Id + bloque.Datos + bloque.Tiempo + bloque.HashAnterior);
-            _repositorio.GuardarBloque(dato);
+            _repositorio.GuardarBloque(bloque);
         }
         private string CalcularHash(string dato)
         {
@@ -65,7 +65,7 @@ namespace TpInvestigacion.Servicio
                 Bloque bloque = listaDatos[i];
                 if (i == 0)
                 {
-                    if (bloque.Hash_anterior != "0")
+                    if (bloque.HashAnterior != "0")
                     {
                         return "Falta el bloque de informacion inicial ";
                     }
@@ -73,7 +73,7 @@ namespace TpInvestigacion.Servicio
                 else
                 {
                     Bloque bloqueAnterior = listaDatos[i - 1];
-                    if (bloque.Hash_anterior != bloqueAnterior.Hash)
+                    if (bloque.HashAnterior != bloqueAnterior.Hash)
                     {
                         return "Falta al menos un bloque de informacion";
                     }

@@ -45,7 +45,7 @@ namespace TpInvestigacion.Web.Controllers
             bloqueEditado.Id = int.Parse(formulario["Id"]);
             bloqueEditado.Datos = formulario["Datos"];
             bloqueEditado.Hash = formulario["Hash"];
-            bloqueEditado.Hash_anterior = formulario["Hash_anterior"];
+            bloqueEditado.HashAnterior = formulario["Hash_anterior"];
             bloqueEditado.Tiempo = DateTime.Parse(formulario["Tiempo"]);
             _servicio.ModificarBloque(bloqueEditado);
             return View();

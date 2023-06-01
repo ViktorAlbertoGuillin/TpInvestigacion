@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<TpInvestigacionContext>();
+builder.Services.AddSingleton<TpInvestigacionContext>();
 builder.Services.AddSingleton<IServicio, Servicio>();
 builder.Services.AddSingleton<IRepositorio, Repositorio>();
 
