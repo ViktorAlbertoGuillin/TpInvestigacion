@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Proyectos C#\\TpInvestigacion\\TpInvestigacion.Data\\TpInvestigacion.Data.csproj": {}
+    "C:\\ProyectosCSharp\\TpInvestigacion\\TpInvestigacion.Data\\TpInvestigacion.Data.csproj": {}
   },
   "projects": {
-    "C:\\Proyectos C#\\TpInvestigacion\\TpInvestigacion.Data\\TpInvestigacion.Data.csproj": {
+    "C:\\ProyectosCSharp\\TpInvestigacion\\TpInvestigacion.Data\\TpInvestigacion.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Proyectos C#\\TpInvestigacion\\TpInvestigacion.Data\\TpInvestigacion.Data.csproj",
+        "projectUniqueName": "C:\\ProyectosCSharp\\TpInvestigacion\\TpInvestigacion.Data\\TpInvestigacion.Data.csproj",
         "projectName": "TpInvestigacion.Data",
-        "projectPath": "C:\\Proyectos C#\\TpInvestigacion\\TpInvestigacion.Data\\TpInvestigacion.Data.csproj",
-        "packagesPath": "C:\\Users\\Mariana1\\.nuget\\packages\\",
-        "outputPath": "C:\\Proyectos C#\\TpInvestigacion\\TpInvestigacion.Data\\obj\\",
+        "projectPath": "C:\\ProyectosCSharp\\TpInvestigacion\\TpInvestigacion.Data\\TpInvestigacion.Data.csproj",
+        "packagesPath": "C:\\Users\\Casa\\.nuget\\packages\\",
+        "outputPath": "C:\\ProyectosCSharp\\TpInvestigacion\\TpInvestigacion.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Mariana1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Casa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -81,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

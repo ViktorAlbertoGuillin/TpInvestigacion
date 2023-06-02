@@ -29,6 +29,10 @@ namespace TpInvestigacion.Web.Controllers
         public IActionResult Listar()
         {
             List<Bloque> lista = _servicio.ListarBloques();
+            if(lista == null)
+            {
+                return View("ListaVacia");
+            }
             return View(lista);
         }
 

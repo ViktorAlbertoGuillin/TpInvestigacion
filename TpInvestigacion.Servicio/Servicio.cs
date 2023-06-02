@@ -46,10 +46,7 @@ namespace TpInvestigacion.Servicio
             _repositorio.GuardarBloque(bloque);
         }
 
-
-
-
-        public List<Bloque> ListarBloques()
+        public List<Bloque>? ListarBloques()
         {
             try
             {
@@ -57,7 +54,7 @@ namespace TpInvestigacion.Servicio
             }
             catch (Exception ex)
             {
-
+                return null;
             }
         }
 
@@ -70,6 +67,7 @@ namespace TpInvestigacion.Servicio
         {
             _repositorio.ModificarBloque(bloqueEditado);
         }
+
         public void EliminarBloque(int Id)
         {
             _repositorio.EliminarBloque(Id);

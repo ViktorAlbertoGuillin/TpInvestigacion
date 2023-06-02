@@ -20,7 +20,7 @@ namespace TpInvestigacion.Data
 
         public void GuardarBloque(Bloque bloque)
         {
-            _contexto.Bloques.Add(bloque);
+            _contexto.Add(bloque);
             _contexto.SaveChanges();
         }
 

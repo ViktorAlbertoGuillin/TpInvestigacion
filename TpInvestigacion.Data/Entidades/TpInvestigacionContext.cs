@@ -16,8 +16,6 @@ namespace TpInvestigacion.Data.Entidades
         {
         }
 
-        public virtual DbSet<Bloque> Bloques { get; set; } = null!;
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -29,28 +27,6 @@ namespace TpInvestigacion.Data.Entidades
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Bloque>(entity =>
-            {
-                entity.ToTable("Bloque");
-
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.Datos)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Hash)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.HashAnterior)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("Hash_anterior");
-
-                entity.Property(e => e.Tiempo).HasColumnType("datetime");
-            });
-
             OnModelCreatingPartial(modelBuilder);
         }
 
